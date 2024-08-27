@@ -3,10 +3,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue 3 Tutorial</title>
-    <script src="https://unpkg.com/vue@3.0.2/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
 </head>
 <body>
     <h1>Hello Marc</h1>
-
+    <div id="app">
+        <!-- Remove the div if the v-if is false -->
+        <div v-if="showBooks">
+            <p>{{title}} - {{author}} - {{age}} </p>
+            <button v-on:click="age++">Increase age</button>
+            <button v-on:click="age--">Decrease age</button>
+            <div @click="changeTitle('Tutorial vue film')">Change title</div>
+        </div>
+        <!-- Display none the div when v-show is false -->
+        <div v-show="showBooks" >Always present div</div>
+        <div>
+            <button @click="toggleShowBooks">
+                <span v-if="showBooks" >Hide books</span>
+                <span v-else>Show books</span>
+            </button> 
+        </div>
+    </div>
+    <script src="app.js"></script>
 </body>
 </html>
