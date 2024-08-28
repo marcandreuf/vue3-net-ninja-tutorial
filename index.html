@@ -1,19 +1,41 @@
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue 3 Tutorial</title>
     <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .box {
+            padding: 100px 0;
+            width: 400;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <h1>Hello Marc</h1>
     <div id="app">
+        <!-- attribute binding -->
+        <a v-bind:href="url">ItQuaLab website</a>
+
         <!-- Remove the div if the v-if is false -->
         <div v-if="showBooks">
             <p>{{title}} - {{author}} - {{age}} </p>
             <button v-on:click="age++">Increase age</button>
             <button v-on:click="age--">Decrease age</button>
             <div @click="changeTitle('Tutorial vue film')">Change title</div>
+
+            <ul>
+                <li v-for="book in books" :key="book.title">
+                    <h3>{{book.title}}</h3>
+                    <p>{{book.author}}</p>
+                    <p>{{book.year}}</p>
+                </li>
+            </ul>
         </div>
         <!-- Display none the div when v-show is false -->
         <div v-show="showBooks" >Always present div</div>
@@ -23,6 +45,14 @@
                 <span v-else>Show books</span>
             </button> 
         </div>
+
+        <br/>
+        <div class="box" @mouseover="handleEvent($event, 'extra-paramter-value')" >mouse over me</div>
+        <div class="box" @mouseleave="handleEvent" >mouseleave</div>
+        <div class="box" @dblclick="handleEvent" >double click</div>
+        <div class="box" @mousemove="handleMouseMove" >position x,y:{{x}},{{y}}</div>
+
+        
     </div>
     <script src="app.js"></script>
 </body>
